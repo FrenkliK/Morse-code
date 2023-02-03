@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class MorseCodeTranslator {
+  
+  // Array to store the Morse code of each letter
+  static String[] morseCode = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Enter a word to translate to Morse code: ");
+    String word = sc.nextLine();
+    // Converting the word to uppercase for consistency
+    word = word.toUpperCase();
+    // Calling the method to translate the word to Morse code
+    String translated = translateToMorseCode(word);
+    System.out.println("The translated Morse code is: " + translated);
+  }
+  
+  // Method to translate the word to Morse code
+  public static String translateToMorseCode(String word) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < word.length(); i++) {
+      char c = word.charAt(i);
+      // Checking if the character is a letter
+      if (c >= 'A' && c <= 'Z') {
+        // Getting the corresponding Morse code from the array
+        sb.append(morseCode[c - 'A'] + " ");
+      }
+    }
+    return sb.toString();
+  }
+  
+}
