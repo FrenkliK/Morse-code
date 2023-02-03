@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+  Scanner sc = new Scanner(System.in);
+  MorseCodeTranslator translator = new MorseCodeTranslator();
+
+  System.out.print("Enter a word to translate to Morse code: ");
+  String word = sc.nextLine();
+  String morse = translator.translateToMorseCode(word);
+  System.out.println("The translated Morse code is: " + morse);
+
+  System.out.print("Enter a Morse code to translate to English: ");
+  morse = sc.nextLine();
+  word = translator.translateToEnglish(morse);
+  System.out.println("The translated English word is: " + word);
+}
