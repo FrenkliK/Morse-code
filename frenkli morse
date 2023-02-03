@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class MorseToWords {
+  static String[] morseAlphabet = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+  static String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+  static int lettersCount = letters.length;
+  
+  public static String morseToWord(String input) {
+    String[] words = input.split("   ");
+    StringBuilder result = new StringBuilder();
+    for (String word : words) {
+      String[] lettersInWord = word.split(" ");
+      for (String letter : lettersInWord) {
+        for (int i = 0; i < lettersCount; i++) {
+          if (letter.equals(morseAlphabet[i])) {
+            result.append(letters[i]);
+            break;
+          }
+        }
+      }
+      result.append(" ");
+    }
+    return result.toString().trim();
+  }
+  
+  public static String wordToMorse(String input) {
+    input = input.toLowerCase();
+    StringBuilder result = new StringBuilder();
+    for (int i = 0; i < input.length(); i++) {
+      char c = input.charAt(i);
+      if (c == ' ') {
+        result.append("   ");
+      } else {
+        for (int j = 0; j < lettersCount; j++) {
+          if (c == letters[j].charAt(0)) {
+            result.append(morseAlphabet[j]);
+            result.append(" ");
+            break;
+          }
+        }
+      }
+    }
+    return result.toString().trim();
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter (1) for Morse to Words or (2) for Words to Morse: ");
+    int choice = sc.nextInt();
+    sc.nextLine();
+    System.out.println("Enter text: ");
+    String input = sc.nextLine();
+    if (choice == 1) {
+      System.out.println("Translation: " + morseToWord(input));
+    } else {
+      System.out.println("Translation: " + wordToMorse(input));
+    }
+  }
+}
